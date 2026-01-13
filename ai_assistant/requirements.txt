@@ -1,5 +1,6 @@
 flask
 requests
+gunicorn
 feedparser
 openai
 schedule
