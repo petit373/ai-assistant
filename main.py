@@ -3,6 +3,7 @@ import time
 import requests
 import feedparser
 import schedule
+import threading
 from flask import Flask
 from openai import OpenAI
 
@@ -83,10 +84,5 @@ def run_scheduler():
         schedule.run_pending()
         time.sleep(30)
 
-if __name__ == "__main__":
-    import threading
-    t = threading.Thread(target=run_scheduler)
-    t.start()
-
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
+# 🔥 gunicorn でもスケジューラが動くようにする
+threading.Thread(target=run_scheduler, daemon=True).start()
