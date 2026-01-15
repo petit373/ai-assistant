@@ -1,4 +1,8 @@
 import os
+
+print("CWD:", os.getcwd())
+print("FILES:", os.listdir())
+
 import time
 import requests
 import feedparser
